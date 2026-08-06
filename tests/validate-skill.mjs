@@ -33,12 +33,12 @@ for (const text of ["display_name:", "short_description:", "default_prompt:", "$
 }
 
 const luna = fs.readFileSync(path.join(skillDir, "templates", "luna-worker.toml"), "utf8");
-for (const text of ['model = "gpt-5.6-luna"', 'reasoning_effort = "max"', "developer_instructions ="]) {
+for (const text of ['name = "luna-worker"', 'model = "gpt-5.6-luna"', 'model_reasoning_effort = "max"', "developer_instructions ="]) {
   if (!luna.includes(text)) throw new Error(`luna template is missing: ${text}`);
 }
 
 const terra = fs.readFileSync(path.join(skillDir, "templates", "terra-worker.toml"), "utf8");
-for (const text of ['model = "gpt-5.6-terra"', 'reasoning_effort = "medium"', "developer_instructions ="]) {
+for (const text of ['name = "terra-worker"', 'model = "gpt-5.6-terra"', 'model_reasoning_effort = "medium"', "developer_instructions ="]) {
   if (!terra.includes(text)) throw new Error(`terra template is missing: ${text}`);
 }
 
