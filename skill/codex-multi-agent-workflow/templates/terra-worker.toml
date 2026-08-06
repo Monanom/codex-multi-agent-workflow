@@ -1,5 +1,6 @@
+name = "terra-worker"
 model = "gpt-5.6-terra"
-reasoning_effort = "medium"
+model_reasoning_effort = "medium"
 description = "处理范围明确、需要工程判断且可独立验证的中等复杂度任务。"
 
 developer_instructions = """
