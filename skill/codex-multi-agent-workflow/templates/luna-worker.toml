@@ -1,5 +1,6 @@
+name = "luna-worker"
 model = "gpt-5.6-luna"
-reasoning_effort = "max"
+model_reasoning_effort = "max"
 description = "处理范围明确、局部且可独立验证的工程执行任务。"
 
 developer_instructions = """
