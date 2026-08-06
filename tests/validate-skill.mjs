@@ -8,6 +8,7 @@ const requiredFiles = [
   ".gitignore",
   "skill/codex-multi-agent-workflow/SKILL.md",
   "skill/codex-multi-agent-workflow/agents/openai.yaml",
+  "skill/codex-multi-agent-workflow/templates/terra-worker.toml",
   "skill/codex-multi-agent-workflow/templates/luna-worker.toml",
   "skill/codex-multi-agent-workflow/templates/AGENTS.md.snippet",
 ];
@@ -22,7 +23,7 @@ const skill = fs.readFileSync(path.join(skillDir, "SKILL.md"), "utf8");
 if (!/^---\nname: codex-multi-agent-workflow\ndescription: Use when .+\n---\n/m.test(skill)) {
   throw new Error("SKILL.md must have valid, trigger-focused frontmatter");
 }
-for (const text of ["主代理", "luna-worker", "ChatGPT Pro", "外部复核未执行"]) {
+for (const text of ["Sol", "terra-worker", "luna-worker", "ChatGPT Pro", "外部复核未执行"]) {
   if (!skill.includes(text)) throw new Error(`SKILL.md is missing: ${text}`);
 }
 
@@ -34,6 +35,11 @@ for (const text of ["display_name:", "short_description:", "default_prompt:", "$
 const luna = fs.readFileSync(path.join(skillDir, "templates", "luna-worker.toml"), "utf8");
 for (const text of ['model = "gpt-5.6-luna"', 'reasoning_effort = "max"', "developer_instructions ="]) {
   if (!luna.includes(text)) throw new Error(`luna template is missing: ${text}`);
+}
+
+const terra = fs.readFileSync(path.join(skillDir, "templates", "terra-worker.toml"), "utf8");
+for (const text of ['model = "gpt-5.6-terra"', 'reasoning_effort = "medium"', "developer_instructions ="]) {
+  if (!terra.includes(text)) throw new Error(`terra template is missing: ${text}`);
 }
 
 const readme = fs.readFileSync(path.join(root, "README.md"), "utf8");
