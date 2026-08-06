@@ -1,6 +1,6 @@
 ---
 name: codex-multi-agent-workflow
-description: Use when Codex needs to decide whether a software task should stay with the primary agent, be delegated as a bounded task, or receive optional independent external review for complex engineering work.
+description: Use when Codex needs to route engineering work between a Sol primary agent, a Terra worker for bounded medium-complexity tasks, a Luna worker for explicit local execution, and optional independent external review for complex work.
 ---
 
 # Codex 多代理工程协作
@@ -12,10 +12,13 @@ description: Use when Codex needs to decide whether a software task should stay 
 | 情况 | 负责人 |
 | --- | --- |
 | 简单、局部或无需独立复核 | 主代理 |
-| 范围明确、可独立验证、可并行 | `luna-worker` |
+| 范围明确、需要一定工程判断、但限定在一个模块或交付包内 | `terra-worker` |
+| 规则明确、局部、重复或偏执行 | `luna-worker` |
 | 跨模块、架构/重大重构、疑难 Bug、安全或性能 | 主代理 + 可选 ChatGPT Pro |
 
-不要让 `luna-worker` 与 ChatGPT Pro 修改同一问题。没有已配置的 `luna-worker` 时，主代理自行完成；不要自动写入用户的代理配置。
+Sol 主代理负责拆解、架构、风险判断、整合、实现和最终验收。`terra-worker` 可负责范围明确的模块实现、局部 Bug 排查、代码审查和补充测试；不得负责架构决策或最终验收。`luna-worker` 只处理调用链检索、指定文件修改、运行测试、日志整理和规则明确的批量修改。
+
+不要让 `terra-worker`、`luna-worker` 与 ChatGPT Pro 修改同一问题。没有已配置的执行代理时，主代理自行完成；不要自动写入用户的代理配置。
 
 ## 使用外部复核
 
