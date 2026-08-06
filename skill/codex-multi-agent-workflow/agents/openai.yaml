@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex 多代理工程协作"
+  short_description: "按任务复杂度协调主代理、Luna 执行与可选外部复核"
+  default_prompt: "使用 $codex-multi-agent-workflow 帮我完成这个工程任务。"
